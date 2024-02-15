@@ -1,6 +1,6 @@
 package model;
 
-import model.exceptions.invalidRatingException;
+import model.exceptions.InvalidRatingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ public class BookTest {
         try {
             book.addRating(6);
             fail("Should not allow rating of 6!");
-        } catch (invalidRatingException e) {
+        } catch (InvalidRatingException e) {
             System.out.println("Exception works!");
         }
     }
@@ -30,7 +30,7 @@ public class BookTest {
         try {
             book.addRating(4);
             System.out.println("good!");
-        } catch (invalidRatingException e) {
+        } catch (InvalidRatingException e) {
             fail("Should not throw exception here!");
         }
     }

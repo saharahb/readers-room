@@ -1,6 +1,6 @@
 package model;
 
-import model.exceptions.invalidRatingException;
+import model.exceptions.InvalidRatingException;
 
 import java.util.ArrayList;
 
@@ -53,11 +53,11 @@ public class Book {
     // REQUIRES: rating is an integer between 1-5
     // MODIFIES: this
     // EFFECTS: adds a 1-5 star rating to book
-    public void addRating(Integer rating) throws invalidRatingException {
+    public void addRating(Integer rating) throws InvalidRatingException {
         if (rating <= 5 && rating >= 1) {
             this.rating = rating;
         } else {
-            throw new invalidRatingException();
+            throw new InvalidRatingException();
         }
     }
 

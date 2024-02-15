@@ -5,9 +5,7 @@ import java.util.List;
 
 public class Library {
 
-    public ArrayList<Book> books;
-//    private String ownerName;
-
+    private ArrayList<Book> books;
 //    private String ownerName;
 
     // EFFECTS: constructs a library with a list of books read.

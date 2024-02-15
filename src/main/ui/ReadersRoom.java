@@ -3,9 +3,8 @@ package ui;
 import model.Book;
 import model.Genre;
 import model.Library;
-import model.exceptions.invalidRatingException;
+import model.exceptions.InvalidRatingException;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -130,8 +129,8 @@ public class ReadersRoom {
                 System.out.println(count + ". " + bk.getTitle());
                 count++;
             }
-            System.out.println("Want more details on a title? \nOr want to leave a rating or review? \n" +
-                    "Enter the number of the book you would like to view.");
+            System.out.println("Want more details on a title? \nOr want to leave a rating or review? \n"
+                    + "Enter the number of the book you would like to view.");
             Integer bookInput = input.nextInt();
             selectBook(bookInput);
         } else {
@@ -142,13 +141,13 @@ public class ReadersRoom {
     private void selectBook(Integer bookInput) {
         if (bookInput > 0 && bookInput <= library.getBooks().size()) {
             Book selectedBook = library.getBooks().get(bookInput - 1);
-            System.out.println( "Title: " + selectedBook.getTitle());
+            System.out.println("Title: " + selectedBook.getTitle());
             System.out.println("By: " + selectedBook.getAuthor());
             System.out.println("Genre: " + selectedBook.getGenre());
             System.out.println("Number of Pages: " + selectedBook.getLength());
             try {
                 rateOrReview(selectedBook);
-            } catch (invalidRatingException e) {
+            } catch (InvalidRatingException e) {
                 throw new RuntimeException(e);
             }
         } else {
@@ -158,7 +157,7 @@ public class ReadersRoom {
         }
     }
 
-    private void rateOrReview(Book bk) throws invalidRatingException {
+    private void rateOrReview(Book bk) throws InvalidRatingException {
         System.out.println("Enter 1 to rate the book out of 5 stars, or enter 2 to leave a review.");
         Integer choice = input.nextInt();
         if (choice == 1) {
@@ -173,7 +172,7 @@ public class ReadersRoom {
         Integer stars = input.nextInt();
         try {
             bk.addRating(stars);
-        } catch (invalidRatingException e) {
+        } catch (InvalidRatingException e) {
             System.out.println("Invalid rating. Please enter a number from 0 to 5.");
         }
     }
@@ -185,10 +184,3 @@ public class ReadersRoom {
     }
 
 }
-
-
-
-
-
-
-

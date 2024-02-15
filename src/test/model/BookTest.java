@@ -17,6 +17,13 @@ public class BookTest {
     }
 
     @Test
+    public void testBook() {
+        assertEquals("Test Book", book.getTitle());
+        assertEquals("Saharah Bains", book.getAuthor());
+        assertEquals(Genre.ROMANCE, book.getGenre());
+        assertEquals(200, book.getLength());
+    }
+    @Test
     public void testAddRatingOver5() {
         try {
             book.addRating(6);
@@ -27,10 +34,20 @@ public class BookTest {
     }
 
     @Test
+    public void testAddRatingUnder0() {
+        try {
+            book.addRating(-1);
+            fail("Should not allow rating of -1!");
+        } catch (InvalidRatingException e) {
+            System.out.println("Exception works!");
+        }
+    }
+
+    @Test
     public void testAddRatingValid() {
         try {
             book.addRating(4);
-            System.out.println("good!");
+            assertEquals(4, book.getRating());
         } catch (InvalidRatingException e) {
             fail("Should not throw exception here!");
         }

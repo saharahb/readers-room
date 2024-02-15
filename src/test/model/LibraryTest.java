@@ -15,7 +15,7 @@ public class LibraryTest {
     public void runBefore() {
         lib = new Library();
         b1 = new Book("Test Book", "Saharah Bains", Genre.ROMANCE, 200);
-        b2 = new Book("Hunger Games", "Suzanne Collins", Genre.CHILDREN, 384);
+        b2 = new Book("Hunger Games", "Suzanne Collins", Genre.YOUNG_ADULT, 384);
     }
 
     @Test

@@ -7,15 +7,13 @@ import model.exceptions.InvalidRatingException;
 
 import java.util.Scanner;
 
-
+// Runs Reader's Room as a console based interface.
 public class ReadersRoom {
-
 
     private Library library;
     private Scanner input;
 
     public ReadersRoom() {
-        this.library = new Library();
         run();
     }
 
@@ -52,7 +50,7 @@ public class ReadersRoom {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes account
+    // EFFECTS: initializes new library and Scanner
     private void init() {
         library = new Library();
         input = new Scanner(System.in);
@@ -69,7 +67,7 @@ public class ReadersRoom {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a book to library, using information inputted by user
+    // EFFECTS: adds a book to library, using information inputted by user.
     private void addBook() {
         System.out.print("Enter the title of the book you want to add: ");
         String title = input.next();
@@ -92,6 +90,7 @@ public class ReadersRoom {
         System.out.println("\nSelect the book's genre from the following list");
         System.out.println("\tEnter n for Non-Fiction");
         System.out.println("\tEnter c for Children's");
+        System.out.println("\tEnter y for Young Adult");
         System.out.println("\tEnter m for Mystery");
         System.out.println("\tEnter r for Romance");
         System.out.println("\tEnter t for Textbook");
@@ -106,6 +105,8 @@ public class ReadersRoom {
                 return Genre.NONFICTION;
             case "c":
                 return Genre.CHILDREN;
+            case "y":
+                return Genre.YOUNG_ADULT;
             case "m":
                 return Genre.MYSTERY;
             case "r":
@@ -121,6 +122,7 @@ public class ReadersRoom {
         }
     }
 
+    // EFFECTS: displays the books in library as a numbered list.
     private void viewLibrary() {
         if (!library.getBooks().isEmpty()) {
             System.out.println("Your Library titles:");
@@ -138,6 +140,7 @@ public class ReadersRoom {
         }
     }
 
+    // EFFECTS: processes number input and displays book info of corresponding book in list.
     private void selectBook(Integer bookInput) {
         if (bookInput > 0 && bookInput <= library.getBooks().size()) {
             Book selectedBook = library.getBooks().get(bookInput - 1);
@@ -157,6 +160,8 @@ public class ReadersRoom {
         }
     }
 
+    // REQUIRES: input must be 1 or 2.
+    // EFFECTS: processes choice input and calls either rateBook() or reviewBook()
     private void rateOrReview(Book bk) throws InvalidRatingException {
         System.out.println("Enter 1 to rate the book out of 5 stars, or enter 2 to leave a review.");
         Integer choice = input.nextInt();
@@ -167,6 +172,9 @@ public class ReadersRoom {
         }
     }
 
+    // REQUIRES: input of integer between 0-5
+    // MODIFIES: book
+    // EFFECTS: adds rating to selected book.
     private void rateBook(Book bk) {
         System.out.println("How many stars do you give this book out of 5?");
         Integer stars = input.nextInt();
@@ -177,6 +185,8 @@ public class ReadersRoom {
         }
     }
 
+    // MODIFIES: book
+    // EFFECTS: adds review to selected book's list of reviews.
     private void reviewBook(Book bk) {
         System.out.println("Enter review here: ");
         String review = input.next();

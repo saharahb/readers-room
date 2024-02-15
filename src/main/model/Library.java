@@ -6,19 +6,17 @@ import java.util.List;
 public class Library {
 
     private ArrayList<Book> books;
-//    private String ownerName;
 
     // EFFECTS: constructs a library with a list of books read.
     public Library() {
-
         this.books = new ArrayList<>();
     }
 
+    // getter
     public ArrayList<Book> getBooks() {
         return books;
     }
 
-//    public String getName() { return ownerName;}
 
     // MODIFIES: this
     // EFFECTS: adds given book to list of books read in library.

@@ -26,6 +26,7 @@ public class Book {
         this.reviews = new ArrayList<>();
     }
 
+    // getters
     public String getTitle() {
         return title;
     }
@@ -50,9 +51,9 @@ public class Book {
         return rating;
     }
 
-    // REQUIRES: rating is an integer between 1-5
+    // REQUIRES: rating is an integer between 0-5
     // MODIFIES: this
-    // EFFECTS: adds a 1-5 star rating to book
+    // EFFECTS: adds a 0-5 star rating to book
     public void addRating(Integer rating) throws InvalidRatingException {
         if (rating <= 5 && rating >= 0) {
             this.rating = rating;

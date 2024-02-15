@@ -39,7 +39,6 @@ public class LibraryTest {
         lib.removeBook(b2);
         assertEquals(1, lib.getBooks().size());
         assertFalse(lib.getBooks().contains(b2));
-
         assertTrue(lib.removeBook(b1));
     }
 

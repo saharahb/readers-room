@@ -1,0 +1,5 @@
+package model;
+
+public enum Genre {
+NONFICTION, CHILDREN, MYSTERY, ROMANCE, HISTORICAL_FICTION, TEXTBOOK
+}

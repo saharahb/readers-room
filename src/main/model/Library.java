@@ -27,8 +27,8 @@ public class Library {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes given book from list of books read in library.
-    public void removeBook(Book bk) {
-        books.remove(bk);
+    // EFFECTS: removes book from list of books and returns true, or false if book is not in library.
+    public boolean removeBook(Book bk) {
+        return books.remove(bk);
     }
 }

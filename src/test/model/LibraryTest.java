@@ -12,7 +12,7 @@ public class LibraryTest {
     private Book b2;
 
     @BeforeEach
-    private void runBefore() {
+    public void runBefore() {
         lib = new Library();
         b1 = new Book("Test Book", "Saharah Bains", Genre.ROMANCE, 200);
         b2 = new Book("Hunger Games", "Suzanne Collins", Genre.CHILDREN, 384);
@@ -31,12 +31,16 @@ public class LibraryTest {
     @Test
     public void testRemoveBook() {
         lib.addBook(b1);
+        assertFalse(lib.removeBook(b2));
+
         lib.addBook(b2);
         assertEquals(2, lib.getBooks().size());
+
         lib.removeBook(b2);
         assertEquals(1, lib.getBooks().size());
         assertFalse(lib.getBooks().contains(b2));
-    }
 
+        assertTrue(lib.removeBook(b1));
+    }
 
 }

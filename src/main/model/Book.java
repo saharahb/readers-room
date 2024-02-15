@@ -54,7 +54,7 @@ public class Book {
     // MODIFIES: this
     // EFFECTS: adds a 1-5 star rating to book
     public void addRating(Integer rating) throws InvalidRatingException {
-        if (rating <= 5 && rating >= 1) {
+        if (rating <= 5 && rating >= 0) {
             this.rating = rating;
         } else {
             throw new InvalidRatingException();

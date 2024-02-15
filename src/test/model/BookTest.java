@@ -4,7 +4,8 @@ import model.exceptions.InvalidRatingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BookTest {
 
@@ -33,5 +34,34 @@ public class BookTest {
         } catch (InvalidRatingException e) {
             fail("Should not throw exception here!");
         }
+    }
+
+    @Test
+    public void testAddRatingZero() {
+        try {
+            book.addRating(0);
+            System.out.println("good!");
+        } catch (InvalidRatingException e) {
+            fail("Should not throw exception here!");
+        }
+    }
+
+    @Test
+    public void testAddRating5() {
+        try {
+            book.addRating(5);
+            System.out.println("good!");
+        } catch (InvalidRatingException e) {
+            fail("Should not throw exception here!");
+        }
+    }
+
+    @Test
+    public void testAddReview() {
+        book.addReview("I like this book");
+        assertEquals(1, book.getReviews().size());
+        book.addReview("I hate this book");
+        assertEquals(2, book.getReviews().size());
+        assertEquals("I like this book", book.getReviews().get(0));
     }
 }

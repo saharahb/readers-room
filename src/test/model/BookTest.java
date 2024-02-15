@@ -60,6 +60,7 @@ public class BookTest {
     public void testAddReview() {
         book.addReview("I like this book");
         assertEquals(1, book.getReviews().size());
+
         book.addReview("I hate this book");
         assertEquals(2, book.getReviews().size());
         assertEquals("I like this book", book.getReviews().get(0));

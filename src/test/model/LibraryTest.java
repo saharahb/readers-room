@@ -23,6 +23,7 @@ public class LibraryTest {
         lib.addBook(b1);
         assertEquals(1, lib.getBooks().size());
         assertEquals(b1, lib.getBooks().get(0));
+
         lib.addBook(b2);
         assertEquals(2, lib.getBooks().size());
         assertEquals(b2, lib.getBooks().get(1));

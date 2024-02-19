@@ -76,10 +76,9 @@ public class BookTest {
     @Test
     public void testAddReview() {
         book.addReview("I like this book");
-        assertEquals(1, book.getReviews().size());
+        assertEquals("I like this book", book.getReview());
 
         book.addReview("I hate this book");
-        assertEquals(2, book.getReviews().size());
-        assertEquals("I like this book", book.getReviews().get(0));
+        assertEquals("I hate this book", book.getReview());
     }
 }

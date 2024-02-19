@@ -2,8 +2,6 @@ package model;
 
 import model.exceptions.InvalidRatingException;
 
-import java.util.ArrayList;
-
 // Represents a Book with a title, author, genre, and length in pages. Includes rating/reviews.
 public class Book {
 
@@ -13,7 +11,7 @@ public class Book {
     private int pages;
 
     private Integer rating;
-    private ArrayList<String> reviews;
+    private String review;
 
     // EFFECTS: constructs a book with a title, author, genre, and length in pages.
     public Book(String title, String author, Genre genre, int pages) {
@@ -23,7 +21,7 @@ public class Book {
         this.pages = pages;
 
         this.rating = null;
-        this.reviews = new ArrayList<>();
+        this.review = null;
     }
 
     // getters
@@ -43,8 +41,8 @@ public class Book {
         return pages;
     }
 
-    public ArrayList getReviews() {
-        return reviews;
+    public String getReview() {
+        return review;
     }
 
     public Integer getRating() {
@@ -65,7 +63,7 @@ public class Book {
     // MODIFIES: this
     // EFFECTS: adds a review to the book's list of reviews
     public void addReview(String review) {
-        reviews.add(review);
+        this.review = review;
     }
 
 }

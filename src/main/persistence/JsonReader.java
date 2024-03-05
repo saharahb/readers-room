@@ -54,7 +54,7 @@ public class JsonReader {
         JSONArray jsonArray = jsonObject.getJSONArray("books");
         for (Object json : jsonArray) {
             JSONObject nextBook = (JSONObject) json;
-            addBook(lib , nextBook);
+            addBook(lib, nextBook);
         }
     }
 

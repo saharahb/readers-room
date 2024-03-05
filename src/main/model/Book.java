@@ -52,6 +52,7 @@ public class Book implements Writable {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
     public void setReview(String review) {
         this.review = review;
     }

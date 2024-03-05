@@ -1,0 +1,17 @@
+{
+    "books": [
+        {
+            "pages": 364,
+            "author": "Suzanne Collins",
+            "genre": "YOUNG_ADULT",
+            "title": "Hunger Games"
+        },
+        {
+            "pages": 266,
+            "author": "Jane Austen",
+            "genre": "ROMANCE",
+            "title": "Pride and Prejudice"
+        }
+    ],
+    "name": "Person"
+}

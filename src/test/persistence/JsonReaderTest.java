@@ -45,7 +45,11 @@ public class JsonReaderTest extends JsonTest{
             ArrayList<Book> books = lib.getBooks();
             assertEquals(2, books.size());
             checkBook("Hunger Games", "Suzanne Collins", Genre.YOUNG_ADULT, 364, books.get(0));
+            assertEquals("PERFECT.", books.get(0).getReview());
+            assertEquals(5, books.get(0).getRating());
             checkBook("Pride and Prejudice", "Jane Austen", Genre.ROMANCE, 266, books.get(1));
+            assertNull(books.get(1).getRating());
+            assertNull(books.get(1).getReview());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

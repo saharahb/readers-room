@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a library of books.
 public class Library {
 
     private ArrayList<Book> books;

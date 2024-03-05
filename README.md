@@ -26,3 +26,6 @@ store all of this data and share my ratings and reviews with friends.
 - As a user, I want to be able to select a book in my library and rate it on a scale of one to five stars
 - As a user, I want to be able to select a book in my library and leave a review.
 
+- As a user, when I select quit from the main menu, I want to have the option to save my library to file or not.
+- As a user, when I start ReadersRoom, I want to be given the option to load my library from file, or not.
+

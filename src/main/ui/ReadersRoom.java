@@ -4,16 +4,29 @@ import model.Book;
 import model.Genre;
 import model.Library;
 import model.exceptions.InvalidRatingException;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Runs Reader's Room as a console based interface.
 public class ReadersRoom {
-
+    private static final String JSON_STORE = "./data/readersroom.json";
     private Library library;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    public ReadersRoom() {
+    // EFFECTS: constructs Library and runs application
+    public ReadersRoom() throws FileNotFoundException {
+
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        library = new Library("Saharah");
         run();
     }
 
@@ -21,7 +34,6 @@ public class ReadersRoom {
         boolean keepRunning = true;
         String command;
 
-        init();
 
         System.out.println("\nWELCOME TO READER'S ROOM");
 
@@ -38,34 +50,31 @@ public class ReadersRoom {
         System.out.println("\n Thank you for using Reader's Room, goodbye!");
     }
 
-    // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommand(String command) {
-        if (command.equals("b")) {
-            addBook();
-        } else if (command.equals("l")) {
-            viewLibrary();
-        } else {
-            System.out.println("Invalid option, please select b, l, or q.");
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes new library and Scanner
-    private void init() {
-        library = new Library();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-    }
-
-
     // EFFECTS: displays main menu of options to user
     private void mainMenu() {
         System.out.println("\nREADER'S ROOM");
         System.out.println("\nSelect from:");
         System.out.println("\tb -> add a book to your library");
-        System.out.println("\tl -> view your personal library");
+        System.out.println("\tv -> view your personal library");
+        System.out.println("\ts -> save library to file");
+        System.out.println("\tl -> load library from file");
         System.out.println("\tq -> quit");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processCommand(String command) {
+        if (command.equals("b")) {
+            addBook();
+        } else if (command.equals("v")) {
+            viewLibrary();
+        } else if (command.equals("s")) {
+            saveLibrary();
+        } else if (command.equals("l")) {
+            loadLibrary();
+        } else {
+            System.out.println("Invalid option, please select b, v, s, l, or q.");
+        }
     }
 
     // MODIFIES: this
@@ -137,7 +146,7 @@ public class ReadersRoom {
     private void viewLibrary() {
         while (true) {
             if (!library.getBooks().isEmpty()) {
-                System.out.println("Your Library titles:");
+                System.out.println(library.getName() + "'s Library titles:");
                 Integer count = 1;
                 for (Book bk : library.getBooks()) {
                     System.out.println(count + ". " + bk.getTitle());
@@ -180,11 +189,12 @@ public class ReadersRoom {
             System.out.println("Genre: " + bk.getGenre());
             System.out.println("Number of Pages: " + bk.getLength());
             if (bk.getRating() != null) {
-                System.out.println("Your Rating:" + bk.getRating());
+                System.out.println("Your Rating: " + bk.getRating());
             }
             if (bk.getReview() != null) {
-                System.out.println("Your Review:" + bk.getReview());
+                System.out.println("Your Review: " + bk.getReview());
             }
+
             System.out.println("Enter b to go back, or r to leave a rating or review.");
             String choice = input.next();
             if (choice.equals("b")) {
@@ -228,6 +238,29 @@ public class ReadersRoom {
         System.out.println("Enter review here: ");
         String review = input.next();
         bk.addReview(review);
+    }
+
+    // EFFECTS: saves library to file
+    private void saveLibrary() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(library);
+            jsonWriter.close();
+            System.out.println("Saved " + library.getName() + "'s Library to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads Library from file
+    private void loadLibrary() {
+        try {
+            library = jsonReader.read();
+            System.out.println("Loaded " + library.getName() + "'s Library from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

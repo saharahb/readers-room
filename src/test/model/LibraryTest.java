@@ -13,7 +13,7 @@ public class LibraryTest {
 
     @BeforeEach
     public void runBefore() {
-        lib = new Library();
+        lib = new Library("Saharah");
         b1 = new Book("Test Book", "Saharah Bains", Genre.ROMANCE, 200);
         b2 = new Book("Hunger Games", "Suzanne Collins", Genre.YOUNG_ADULT, 384);
     }

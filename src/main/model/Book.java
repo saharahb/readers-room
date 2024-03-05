@@ -1,9 +1,11 @@
 package model;
 
 import model.exceptions.InvalidRatingException;
+import org.json.JSONObject;
+import persistence.Writable;
 
 // Represents a Book with a title, author, genre, and length in pages. Includes rating/reviews.
-public class Book {
+public class Book implements Writable {
 
     private String title;
     private String author;
@@ -20,11 +22,9 @@ public class Book {
         this.genre = genre;
         this.pages = pages;
 
-        this.rating = null;
-        this.review = null;
     }
 
-    // getters
+    // getters and setters
     public String getTitle() {
         return title;
     }
@@ -49,12 +49,19 @@ public class Book {
         return rating;
     }
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     // REQUIRES: rating is an integer between 0-5
     // MODIFIES: this
     // EFFECTS: adds a 0-5 star rating to book
     public void addRating(Integer rating) throws InvalidRatingException {
         if (rating <= 5 && rating >= 0) {
-            this.rating = rating;
+            this.setRating(rating);
         } else {
             throw new InvalidRatingException();
         }
@@ -63,7 +70,18 @@ public class Book {
     // MODIFIES: this
     // EFFECTS: adds a review to the book's list of reviews
     public void addReview(String review) {
-        this.review = review;
+        this.setReview(review);
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("author", author);
+        json.put("genre", genre);
+        json.put("pages", pages);
+        json.put("rating", rating);
+        json.put("review", review);
+        return json;
+    }
 }

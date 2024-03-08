@@ -1,6 +1,7 @@
 package model;
 
 import model.exceptions.InvalidRatingException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,7 @@ public class BookTest {
 
     @BeforeEach
     private void runBefore() {
+
         book = new Book("Test Book", "Saharah Bains", Genre.ROMANCE, 200);
     }
 
@@ -80,5 +82,23 @@ public class BookTest {
 
         book.addReview("I hate this book");
         assertEquals("I hate this book", book.getReview());
+    }
+
+    @Test
+    public void testToJson() {
+        book.setRating(4);
+        book.setReview("Great book!");
+
+        JSONObject expectedJson = new JSONObject();
+        expectedJson.put("title", "Test Book");
+        expectedJson.put("author", "Saharah Bains");
+        expectedJson.put("genre", Genre.ROMANCE.toString());
+        expectedJson.put("pages", 200);
+        expectedJson.put("rating", 4);
+        expectedJson.put("review", "Great book!");
+
+        JSONObject actualJson = book.toJson();
+
+        assertEquals(expectedJson.toString(), actualJson.toString());
     }
 }

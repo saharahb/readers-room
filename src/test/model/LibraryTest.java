@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,5 +46,38 @@ public class LibraryTest {
         assertFalse(lib.getBooks().contains(b2));
         assertTrue(lib.removeBook(b1));
     }
+
+    @Test
+    public void testToJson() {
+        lib.addBook(b1);
+        lib.addBook(b2);
+
+        JSONObject expectedJson = new JSONObject();
+        expectedJson.put("name", "Saharah");
+
+        JSONArray books = new JSONArray();
+        books.put(b1.toJson());
+        books.put(b2.toJson());
+        expectedJson.put("books", books);
+
+        JSONObject actualJson = lib.toJson();
+
+        assertEquals(expectedJson.toString(), actualJson.toString());
+    }
+
+    @Test
+    public void testBooksToJson() {
+        lib.addBook(b1);
+        lib.addBook(b2);
+
+        JSONArray expectedArray = new JSONArray();
+        expectedArray.put(b1.toJson());
+        expectedArray.put(b2.toJson());
+
+        JSONArray actualArray = lib.booksToJson();
+
+        assertEquals(expectedArray.toString(), actualArray.toString());
+    }
+
 
 }

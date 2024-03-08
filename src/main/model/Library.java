@@ -50,7 +50,7 @@ public class Library implements Writable {
     }
 
     // EFFECTS: returns books in library as a JSON array
-    private JSONArray booksToJson() {
+    public JSONArray booksToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Book b : books) {

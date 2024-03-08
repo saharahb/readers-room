@@ -49,32 +49,35 @@ public class LibraryTest {
 
     @Test
     public void testToJson() {
-        lib.addBook(b1);
-        lib.addBook(b2);
-
         JSONObject expectedJson = new JSONObject();
         expectedJson.put("name", "Saharah");
-
         JSONArray books = new JSONArray();
+        expectedJson.put("books", books);
+        JSONObject actualJson = lib.toJson();
+        assertEquals(expectedJson.toString(), actualJson.toString());
+
+        lib.addBook(b1);
+        lib.addBook(b2);
+        actualJson = lib.toJson();
+
         books.put(b1.toJson());
         books.put(b2.toJson());
-        expectedJson.put("books", books);
-
-        JSONObject actualJson = lib.toJson();
 
         assertEquals(expectedJson.toString(), actualJson.toString());
     }
 
     @Test
     public void testBooksToJson() {
+        JSONArray expectedArray = new JSONArray();
+        JSONArray actualArray = lib.booksToJson();
+        assertEquals(expectedArray.toString(), actualArray.toString());
+
         lib.addBook(b1);
         lib.addBook(b2);
+        actualArray = lib.booksToJson();
 
-        JSONArray expectedArray = new JSONArray();
         expectedArray.put(b1.toJson());
         expectedArray.put(b2.toJson());
-
-        JSONArray actualArray = lib.booksToJson();
 
         assertEquals(expectedArray.toString(), actualArray.toString());
     }

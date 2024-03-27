@@ -98,7 +98,7 @@ public class GUI extends JFrame {
         StringBuilder lib = new StringBuilder();
         if (!library.getBooks().isEmpty()) {
             for (Book b : library.getBooks()) {
-                lib.append("\n").append(b.getTitle()).append(b.getAuthor()).append(b.getGenre()).append(b.getLength());
+                lib.append("\n").append(b.getTitle()).append(" By: ").append(b.getAuthor());
             }
             return lib.toString();
         } else {

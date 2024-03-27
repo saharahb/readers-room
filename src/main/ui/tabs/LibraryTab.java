@@ -1,17 +1,16 @@
 package ui.tabs;
 
-import model.Book;
 import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LibraryTab extends Tab {
-    private static final int WIDTH= 600;
-    private static final int HEIGHT=600;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 600;
     private static final String TITLE = "Your Library:";
     private JLabel title;
-    private GUI controller;
+    private final GUI controller;
     private String lib;
     private JTextArea bookList;
 
@@ -49,8 +48,8 @@ public class LibraryTab extends Tab {
 
     private void placeBookList() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0,1));
-        panel.setBounds(50,100, 300, 400);
+        panel.setLayout(new GridLayout(0, 1));
+        panel.setBounds(50, 100, 300, 400);
 
         bookList = new JTextArea();
         bookList.setEditable(false);
@@ -68,7 +67,7 @@ public class LibraryTab extends Tab {
     private void placeRefreshButton() {
         JButton refreshButton = new JButton("Refresh");
 
-        refreshButton.setBounds(0, 0, 70,70);
+        refreshButton.setBounds(0, 0, 70, 70);
         this.add(refreshButton);
         refreshButton.addActionListener(e -> {
             lib = controller.viewLibrary();

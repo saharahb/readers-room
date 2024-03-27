@@ -5,14 +5,14 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-
+// Represents a GUI tab displaying home page
 public class HomeTab extends Tab {
     private static final String INIT_GREETING = "Welcome to Reader's Room";
     private JLabel greeting;
     private final GUI controller;
 
 
-    // EFFECTS constructs a home tab for console with buttons and greeting
+    // EFFECTS constructs a home tab for console with greetings and save/load buttons
     public HomeTab(GUI controller) {
         super(controller);
         this.controller = controller;

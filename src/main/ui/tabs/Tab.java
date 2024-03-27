@@ -5,6 +5,7 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a GUI tab
 public abstract class Tab extends JPanel {
 
     private final GUI controller;

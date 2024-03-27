@@ -7,6 +7,8 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+//Represents a GUI tab where user adds book info
+
 public class AddBookTab extends Tab {
 
     private final GUI controller;
@@ -26,7 +28,7 @@ public class AddBookTab extends Tab {
     private final String[] genres = {"Non-fiction", "Children", "Young Adult", "Mystery", "Romance", "Fantasy",
             "Historical Fiction", "Textbook"};
 
-
+    //EFFECTS: creates a GUI tab where user adds book info
     public AddBookTab(GUI controller) {
         super(controller);
         this.controller = controller;
@@ -39,7 +41,7 @@ public class AddBookTab extends Tab {
         placeAddBookLength();
 
         placeAddBookButton();
-//        placeBackButton();
+
 
     }
 
@@ -68,6 +70,7 @@ public class AddBookTab extends Tab {
         this.add(genreBox);
     }
 
+    //EFFECTS: returns the corresponding GENRE of the given string
     private static Genre mapStringToGenre(String genreString) {
         switch (genreString) {
             case "Non-fiction":
@@ -90,7 +93,6 @@ public class AddBookTab extends Tab {
                 return null;
         }
     }
-
 
     //EFFECTS: creates text field for adding book length
     private void placeAddBookLength() {
@@ -132,16 +134,6 @@ public class AddBookTab extends Tab {
             }
         });
 
-    }
-
-    //EFFECTS: creates an 'back' button that saves book to library
-    private void placeBackButton() {
-        JButton backButton = new JButton("Back");
-
-        backButton.addActionListener(e -> {
-            // TODO: go back to home
-        });
-        this.add(backButton);
     }
 
 }

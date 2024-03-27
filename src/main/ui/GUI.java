@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+// Represents a GUI of Reader's Room app
 public class GUI extends JFrame {
     private int count;
 
@@ -23,10 +24,10 @@ public class GUI extends JFrame {
 
     private static final String JSON_STORE = "./data/readersroom.json";
     private Library library;
-    private Scanner input;
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 
+    //EFFECTS: constructs GUI of Reader's Room app
     public GUI() {
         super("Reader's Room");
         setSize(WIDTH, HEIGHT);
@@ -47,6 +48,7 @@ public class GUI extends JFrame {
     }
 
 
+    //EFFECTS: creates 3 tabs in the sidebar
     public void loadTabs() {
         JPanel homeTab = new HomeTab(this);
         JPanel addBookTab = new AddBookTab(this);
@@ -94,15 +96,19 @@ public class GUI extends JFrame {
         }
     }
 
+    //EFFECTS: creates a string list of each book in library with title and author
     public String viewLibrary() {
         StringBuilder lib = new StringBuilder();
         if (!library.getBooks().isEmpty()) {
+            int count = 1;
             for (Book b : library.getBooks()) {
-                lib.append("\n").append(b.getTitle()).append(" By: ").append(b.getAuthor());
+                lib.append("\n").append(count).append(". ").append(b.getTitle()).append(" By: ").append(b.getAuthor());
+                count++;
             }
             return lib.toString();
         } else {
             return "No books in your library.";
         }
     }
+
 }

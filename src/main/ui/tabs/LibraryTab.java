@@ -5,6 +5,7 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a GUI tab with Library displayed
 public class LibraryTab extends Tab {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 600;
@@ -14,6 +15,7 @@ public class LibraryTab extends Tab {
     private String lib;
     private JTextArea bookList;
 
+    //EFFECTS: creates a GUI tab with library displayed
     public LibraryTab(GUI controller) {
         super(controller);
         this.controller = controller;
@@ -46,6 +48,7 @@ public class LibraryTab extends Tab {
 //        }
 //    }
 
+    //EFFECTS: creates a JScrollPane with the list of books in library
     private void placeBookList() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 1));
@@ -63,7 +66,7 @@ public class LibraryTab extends Tab {
         this.repaint();
     }
 
-    //EFFECTS: refresh button
+    //EFFECTS: creates a refresh button
     private void placeRefreshButton() {
         JButton refreshButton = new JButton("Refresh");
 

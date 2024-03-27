@@ -11,11 +11,9 @@ import ui.tabs.LibraryTab;
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 // Represents a GUI of Reader's Room app
 public class GUI extends JFrame {
-    private int count;
 
     private final JTabbedPane sidebar;
 
@@ -62,10 +60,6 @@ public class GUI extends JFrame {
         sidebar.setTitleAt(2, "Your Library");
     }
 
-    //EFFECTS: returns sidebar of this UI
-    public JTabbedPane getTabbedPane() {
-        return sidebar;
-    }
 
     // EFFECTS: returns the library
     public Library getLibrary() {

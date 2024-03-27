@@ -27,7 +27,6 @@ public class GUI extends JFrame {
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 
-
     public GUI() {
         super("Reader's Room");
         setSize(WIDTH, HEIGHT);

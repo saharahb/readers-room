@@ -1,5 +1,6 @@
 package ui.tabs;
 
+import model.Book;
 import ui.GUI;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ public class LibraryTab extends Tab {
     private final GUI controller;
     private String lib;
     private JTextArea bookList;
+    private JPanel panel;
+
 
     //EFFECTS: creates a GUI tab with library displayed
     public LibraryTab(GUI controller) {
@@ -25,42 +28,36 @@ public class LibraryTab extends Tab {
         placeRefreshButton();
         placeTitle();
         placeBookList();
-//        placeBooks();
-
     }
 
     //EFFECTS: creates title at top of console
     private void placeTitle() {
         title = new JLabel(TITLE, JLabel.CENTER);
         this.add(title);
-        title.setBounds(300, 20, 100, 100);
+        title.setBounds(200, 20, 100, 100);
     }
 
-    // EFFECTS: creates buttons for every book in library
-//    public void placeBooks() {
-//        for (Book bk : controller.getLibrary().getBooks()) {
-//            JButton bookButton = new JButton(bk.getTitle() + " By: " + bk.getAuthor());
-//            this.add(bookButton);
-//            bookButton.addActionListener(e -> {
-//                JOptionPane.showMessageDialog(this, bk.getTitle() +
-//                        bk.getAuthor() + bk.getGenre() + bk.getLength());
-//            });
-//        }
-//    }
 
     //EFFECTS: creates a JScrollPane with the list of books in library
     private void placeBookList() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 1));
+        panel = new JPanel();
+        panel.setBackground(Color.pink);
+        panel.setLayout(new FlowLayout());
         panel.setBounds(50, 100, 300, 400);
+        for (Book bk : controller.getLibrary().getBooks()) {
+            JButton bookButton = new JButton(bk.getTitle() + "By: " + bk.getAuthor());
+            panel.add(bookButton);
 
-        bookList = new JTextArea();
-        bookList.setEditable(false);
-
-        panel.add(new JScrollPane(bookList), BorderLayout.CENTER);
-        lib = controller.viewLibrary();
-        bookList.setText(lib);
-
+            bookButton.addActionListener(e -> {
+                if (!controller.getLibrary().getBooks().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Title: " + bk.getTitle()
+                            + "\nAuthor: " + bk.getAuthor() + "\nGenre: " + bk.getGenre().toString().toLowerCase()
+                            + "\nNumber of pages: " + bk.getLength());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No books in your library.");
+                }
+            });
+        }
         this.add(panel);
         this.revalidate();
         this.repaint();
@@ -70,15 +67,18 @@ public class LibraryTab extends Tab {
     private void placeRefreshButton() {
         JButton refreshButton = new JButton("Refresh");
 
-        refreshButton.setBounds(0, 0, 70, 70);
+        refreshButton.setBounds(400, 400, 70, 70);
         this.add(refreshButton);
         refreshButton.addActionListener(e -> {
-            lib = controller.viewLibrary();
-            bookList.setText(lib);
+            if (!panel.equals(null)) {
+                this.remove(panel);
+                revalidate();
+                repaint();
+            }
+            placeBookList();
             revalidate();
             repaint();
         });
-
 
     }
 

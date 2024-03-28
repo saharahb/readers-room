@@ -9,6 +9,7 @@ import ui.tabs.HomeTab;
 import ui.tabs.LibraryTab;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -104,5 +105,4 @@ public class GUI extends JFrame {
             return "No books in your library.";
         }
     }
-
 }

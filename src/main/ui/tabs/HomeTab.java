@@ -10,6 +10,7 @@ public class HomeTab extends Tab {
     private static final String INIT_GREETING = "Welcome to Reader's Room";
     private JLabel greeting;
     private final GUI controller;
+    private Font font;
 
 
     // EFFECTS constructs a home tab for console with greetings and save/load buttons
@@ -31,7 +32,10 @@ public class HomeTab extends Tab {
     //EFFECTS: creates greeting at top of console
     private void placeGreeting() {
         greeting = new JLabel(INIT_GREETING, JLabel.CENTER);
+        greeting.setBackground(Color.pink);
         greeting.setSize(WIDTH, HEIGHT / 4);
+        font = new Font("Georgia", Font.PLAIN, 24);
+        greeting.setFont(font);
         this.add(greeting);
     }
 

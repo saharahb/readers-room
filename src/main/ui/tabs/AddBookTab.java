@@ -116,7 +116,7 @@ public class AddBookTab extends Tab {
     private void placeAddBookButton() {
         JButton addButton = new JButton("Add Book");
         addButton.setAlignmentX(CENTER_ALIGNMENT);
-        addButton.setBackground(Color.green);
+        addButton.setBackground(Color.pink);
         this.add(addButton);
         addButton.addActionListener(e -> {
             this.title = titleField.getText();

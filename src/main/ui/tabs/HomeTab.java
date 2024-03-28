@@ -26,7 +26,6 @@ public class HomeTab extends Tab {
 
         placeSaveLoadButtons();
 
-        //TODO: quit button
     }
 
     //EFFECTS: creates greeting at top of console
@@ -69,7 +68,4 @@ public class HomeTab extends Tab {
 
         this.add(buttonRow);
     }
-
-    //TODO:  add a quit button
-
 }

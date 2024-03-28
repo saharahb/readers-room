@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 //Represents a GUI tab where user adds book info
-
 public class AddBookTab extends Tab {
 
     private final GUI controller;
@@ -41,8 +40,6 @@ public class AddBookTab extends Tab {
         placeAddBookLength();
 
         placeAddBookButton();
-
-
     }
 
     //EFFECTS: creates text fields and button for adding book title
@@ -59,7 +56,6 @@ public class AddBookTab extends Tab {
         authorField = new JTextField(6);
         this.add(authorLabel);
         this.add(authorField);
-//        this.author = authorField.getText();
     }
 
     //EFFECTS: creates text field for adding book genre

@@ -90,19 +90,4 @@ public class GUI extends JFrame {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-
-    //EFFECTS: creates a string list of each book in library with title and author
-    public String viewLibrary() {
-        StringBuilder lib = new StringBuilder();
-        if (!library.getBooks().isEmpty()) {
-            int count = 1;
-            for (Book b : library.getBooks()) {
-                lib.append("\n").append(count).append(". ").append(b.getTitle()).append(" By: ").append(b.getAuthor());
-                count++;
-            }
-            return lib.toString();
-        } else {
-            return "No books in your library.";
-        }
-    }
 }

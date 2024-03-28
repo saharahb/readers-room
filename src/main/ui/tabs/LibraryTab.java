@@ -47,47 +47,55 @@ public class LibraryTab extends Tab {
         for (Book bk : controller.getLibrary().getBooks()) {
             JButton bookButton = new JButton(bk.getTitle() + " By: " + bk.getAuthor());
             panel.add(bookButton);
-
-            bookButton.addActionListener(e -> {
-                JDialog bookInfo = new JDialog(controller, "Book Details", true);
-                bookInfo.setLayout(new BorderLayout()); // Set layout manager for the dialog
-
-                JLabel bookDetailsLabel = new JLabel("Title: " + bk.getTitle()
-                        + "\nAuthor: " + bk.getAuthor() + "\nGenre: " + bk.getGenre().toString().toLowerCase()
-                        + "\nNumber of Pages: " + bk.getLength());
-                bookInfo.add(bookDetailsLabel, BorderLayout.CENTER);
-
-                JPanel buttonPanel = new JPanel();
-                buttonPanel.setLayout(new FlowLayout());
-                JButton removeButton = new JButton("Remove Book");
-                removeButton.addActionListener(e1 -> {
-                    controller.getLibrary().removeBook(bk);
-                    panel.remove(bookButton);
-                    panel.revalidate();
-                    panel.repaint();
-                    bookInfo.dispose();
-                });
-                buttonPanel.add(removeButton);
-
-                JButton okButton = new JButton("Ok");
-                okButton.addActionListener(e1 -> {
-                    bookInfo.dispose();
-                });
-                buttonPanel.add(okButton);
-
-                bookInfo.add(buttonPanel, BorderLayout.SOUTH); // Add button panel to SOUTH region
-
-                bookInfo.pack();
-                bookInfo.setLocationRelativeTo(controller);
-                bookInfo.setVisible(true);
-            });
+            initializeBookButton(bookButton, bk);
         }
         this.add(panel);
         this.revalidate();
         this.repaint();
     }
 
-    //EFFECTS: creates a refresh button
+    //EFFECTS: creates the pop-up pane with book details, remove button, and ok button
+    private void initializeBookButton(JButton bookButton, Book bk) {
+        bookButton.addActionListener(e -> {
+            JDialog bookInfo = new JDialog(controller, "Book Details", true);
+            bookInfo.setLayout(new BorderLayout());
+
+            JLabel bookDetailsLabel = new JLabel("Title: " + bk.getTitle() + "\nAuthor: " + bk.getAuthor()
+                    + "\nGenre: " + bk.getGenre().toString().toLowerCase() + "\nNumber of Pages: " + bk.getLength());
+            bookInfo.add(bookDetailsLabel, BorderLayout.CENTER);
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new FlowLayout());
+
+            JButton removeButton = new JButton("Remove Book");
+            removeButton.addActionListener(e1 -> {
+                removeBook(bookButton, panel, bk);
+                bookInfo.dispose();
+            });
+            buttonPanel.add(removeButton);
+
+            JButton okButton = new JButton("Ok");
+            okButton.addActionListener(e1 -> {
+                bookInfo.dispose();
+            });
+            buttonPanel.add(okButton);
+            bookInfo.add(buttonPanel, BorderLayout.SOUTH);
+
+            bookInfo.pack();
+            bookInfo.setVisible(true);
+        });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes book from library and removes the bookButton from panel
+    private void removeBook(JButton bookButton, JPanel panel, Book bk) {
+        controller.getLibrary().removeBook(bk);
+        panel.remove(bookButton);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    // EFFECTS: creates a refresh button
     private void placeRefreshButton() {
         JButton refreshButton = new JButton("Refresh");
 

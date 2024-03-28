@@ -37,25 +37,49 @@ public class LibraryTab extends Tab {
         title.setBounds(200, 20, 100, 100);
     }
 
-
-    //EFFECTS: creates a JScrollPane with the list of books in library
+    //EFFECTS: creates a list of books in the library as buttons
     private void placeBookList() {
         panel = new JPanel();
         panel.setBackground(Color.pink);
         panel.setLayout(new FlowLayout());
         panel.setBounds(50, 100, 300, 400);
+
         for (Book bk : controller.getLibrary().getBooks()) {
-            JButton bookButton = new JButton(bk.getTitle() + "By: " + bk.getAuthor());
+            JButton bookButton = new JButton(bk.getTitle() + " By: " + bk.getAuthor());
             panel.add(bookButton);
 
             bookButton.addActionListener(e -> {
-                if (!controller.getLibrary().getBooks().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Title: " + bk.getTitle()
-                            + "\nAuthor: " + bk.getAuthor() + "\nGenre: " + bk.getGenre().toString().toLowerCase()
-                            + "\nNumber of pages: " + bk.getLength());
-                } else {
-                    JOptionPane.showMessageDialog(this, "No books in your library.");
-                }
+                JDialog bookInfo = new JDialog(controller, "Book Details", true);
+                bookInfo.setLayout(new BorderLayout()); // Set layout manager for the dialog
+
+                JLabel bookDetailsLabel = new JLabel("Title: " + bk.getTitle()
+                        + "\nAuthor: " + bk.getAuthor() + "\nGenre: " + bk.getGenre().toString().toLowerCase()
+                        + "\nNumber of Pages: " + bk.getLength());
+                bookInfo.add(bookDetailsLabel, BorderLayout.CENTER);
+
+                JPanel buttonPanel = new JPanel();
+                buttonPanel.setLayout(new FlowLayout());
+                JButton removeButton = new JButton("Remove Book");
+                removeButton.addActionListener(e1 -> {
+                    controller.getLibrary().removeBook(bk);
+                    panel.remove(bookButton);
+                    panel.revalidate();
+                    panel.repaint();
+                    bookInfo.dispose();
+                });
+                buttonPanel.add(removeButton);
+
+                JButton okButton = new JButton("Ok");
+                okButton.addActionListener(e1 -> {
+                    bookInfo.dispose();
+                });
+                buttonPanel.add(okButton);
+
+                bookInfo.add(buttonPanel, BorderLayout.SOUTH); // Add button panel to SOUTH region
+
+                bookInfo.pack();
+                bookInfo.setLocationRelativeTo(controller);
+                bookInfo.setVisible(true);
             });
         }
         this.add(panel);
@@ -70,7 +94,7 @@ public class LibraryTab extends Tab {
         refreshButton.setBounds(400, 400, 70, 70);
         this.add(refreshButton);
         refreshButton.addActionListener(e -> {
-            if (!panel.equals(null)) {
+            if (panel != null) {
                 this.remove(panel);
                 revalidate();
                 repaint();
@@ -79,7 +103,6 @@ public class LibraryTab extends Tab {
             revalidate();
             repaint();
         });
-
     }
 
 

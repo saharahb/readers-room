@@ -8,13 +8,10 @@ import java.awt.*;
 
 // Represents a GUI tab with Library displayed
 public class LibraryTab extends Tab {
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 600;
     private static final String TITLE = "Your Library:";
     private JLabel title;
     private final GUI controller;
-    private String lib;
-    private JTextArea bookList;
+
     private JPanel panel;
 
 

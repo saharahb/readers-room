@@ -1,6 +1,7 @@
 package ui;
 
-import model.Book;
+import model.Event;
+import model.EventLog;
 import model.Library;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -9,12 +10,13 @@ import ui.tabs.HomeTab;
 import ui.tabs.LibraryTab;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // Represents a GUI of Reader's Room app
-public class GUI extends JFrame {
+public class GUI extends JFrame implements WindowListener {
 
     private final JTabbedPane sidebar;
 
@@ -30,7 +32,8 @@ public class GUI extends JFrame {
     public GUI() {
         super("Reader's Room");
         setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(this);
 
         library = new Library("Saharah");
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -89,5 +92,49 @@ public class GUI extends JFrame {
         } catch (IOException j) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        // nothing
+    }
+
+    // EFFECTS: closes window
+    @Override
+    public void windowClosing(WindowEvent e) {
+        dispose();
+    }
+
+    // EFFECTS: prints log to console after closing
+    @Override
+    public void windowClosed(WindowEvent e) {
+        printLog(EventLog.getInstance());
+    }
+
+    // EFFECTS: prints log to console
+    public void printLog(EventLog el) {
+        for (Event event : el) {
+            System.out.println(event.toString() + "\n\n");
+        }
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

@@ -50,5 +50,29 @@ details about the book. You may click remove book or ok to continue.
 
 - You can reload the state of my application by clicking "Load data" button on the Home tab
 
-### Citations:
-- I referred to the SmartHome example, a few Swing tutorials, and StackOverflow 
+## Phase 4: Task 2
+
+Wed Apr 03 00:28:15 PDT 2024
+'The Hunger Games' was added to library.
+
+
+Wed Apr 03 00:28:47 PDT 2024
+'Harry Potter' was added to library.
+
+
+Wed Apr 03 00:28:52 PDT 2024
+'Harry Potter' was removed from library.
+
+## Phase 4: Task 3
+
+As this was my first exposure to Swing, I don't think I was very organized in my approach. Based on my UML class diagram, I notice some coupling around the GUI class and the 
+tabs classes. Looking into the classes, I notice that this coupling comes from the fact that each of the tabs
+has a field of a GUI. This is because each of the tabs extends JPanel (by extending Tab), but they still need
+to make changes to the JFrame itself, which is in GUI class. There are also times that the tabs need to access 
+library from GUI, which results in some messy code that could be simplified by refactoring GUI. 
+
+More specifically, I could use the Observer pattern that we learned recently to notify UI components of changes in the 
+model without directly coupling them. I would make the GUI class the observer and the Library class the Subject/Observable.
+The GUI would then be notified and updated when books are added or removed from a library. Not only would this reduce coupling,
+but it would also solve of the problems related to GUI/Tabs issue I discussed above. Overall, I hope to continue working 
+on this project outside of class to create a better design for Reader's Room!

@@ -15,7 +15,6 @@ public class AddBookTab extends Tab {
     private String author;
     private Genre genre;
     private int length;
-    private LibraryTab libraryTab;
 
     private JTextField titleField;
     private JTextField authorField;

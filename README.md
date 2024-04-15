@@ -2,7 +2,7 @@
 
 ## A book logging system.
 
-#### What does it do?
+### What does it do?
 Reader's room is a book logging system that will allow users to create their
 own personal libraries. Each book has a title, author, genre, and length. 
 
@@ -13,7 +13,7 @@ In the GUI version, users can add books to their library, view their library, an
 
 In both versions, users can save their data to file and load their data from file when opening and closing the app.
 
-#### Who will use this application?
+### Who will use this application?
 
 Avid readers and beginners alike may be interested in Reader's Room. This tool aims to motivate and engage with readers of all levels. My favourite hobby is reading, and I enjoy keeping track of my reading data. Creating this tool will give me a space to 
 store all of this data and share my ratings and reviews with friends. 
@@ -29,7 +29,7 @@ store all of this data and share my ratings and reviews with friends.
 - As a user, I want to be given the option to load my library from file, or not.
 - As a user, I want to be able to remove a book from my library
 
-#### How to use it:
+### How to use it:
 
 - You can generate the first user story "adding multiple books to a library" by: 
   selecting the "Add Book" tab on the left side of screen. Enter book's information and select add.
@@ -42,7 +42,7 @@ details about the book. You may click remove book or ok to continue.
 - You can save the state of the application by clicking "Save data" button on the Home tab
 - You can reload the state of the application by clicking "Load data" button on the Home tab
 
-## This application uses event logging, here is an example log:
+### This application uses event logging, here is an example log:
 
 Wed Apr 03 00:28:15 PDT 2024
 'The Hunger Games' was added to library.
@@ -55,7 +55,7 @@ Wed Apr 03 00:28:47 PDT 2024
 Wed Apr 03 00:28:52 PDT 2024
 'Harry Potter' was removed from library.
 
-## Areas for improvement: 
+#### Areas for improvement: 
 
 As this was my first exposure to Swing, I don't think I was very organized in my approach. Based on my UML class diagram, I notice some coupling around the GUI class and the 
 tabs classes. Looking into the classes, I notice that this coupling comes from the fact that each of the tabs
